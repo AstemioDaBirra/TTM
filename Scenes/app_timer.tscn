@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://76yybi0xen6c"]
+
+[ext_resource type="Texture2D" uid="uid://ct7xjb1kxd6yo" path="res://art/background.png" id="1_dd5ng"]
+[ext_resource type="Script" uid="uid://dqkbnwr383qda" path="res://Scripts/app_timer.gd" id="1_eisjj"]
+[ext_resource type="Texture2D" uid="uid://c4abufwnp6751" path="res://art/background_down.png" id="1_yd5er"]
+[ext_resource type="FontFile" uid="uid://c1mfdxxdb5giw" path="res://fonts/Basal.ttf" id="2_1wxb6"]
+[ext_resource type="Texture2D" uid="uid://en0nmvn7nqlw" path="res://art/play_up.png" id="2_grb1v"]
+[ext_resource type="Texture2D" uid="uid://cuy3y3d0qsj3k" path="res://art/play_down.png" id="3_sthw7"]
+[ext_resource type="Texture2D" uid="uid://b5i6xri4g6oli" path="res://art/restart_up.png" id="4_s724p"]
+[ext_resource type="Texture2D" uid="uid://qn8hr2k7r56a" path="res://art/restart_down.png" id="5_1wxb6"]
+
+[node name="timer_panel" type="Panel" unique_id=1454955827 groups=["AppTimer"]]
+custom_minimum_size = Vector2(224, 64)
+anchors_preset = -1
+anchor_right = 0.9375
+anchor_bottom = 0.16666667
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eisjj")
+timerName = "Test Timer"
+time = 300.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=2137032987]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yd5er")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="timer_name_label" type="RichTextLabel" parent="." unique_id=860299169]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016666668
+anchor_top = 0.03125
+anchor_right = 0.98333335
+anchor_bottom = 0.40625
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_1wxb6")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+text = "Timer Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=689269400]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.016666668
+anchor_top = 0.4375
+anchor_right = 0.98333335
+anchor_bottom = 0.9375
+grow_vertical = 0
+size_flags_vertical = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="playpause_button" type="TextureButton" parent="HBoxContainer" unique_id=58821709]
+layout_mode = 2
+texture_normal = ExtResource("2_grb1v")
+texture_pressed = ExtResource("3_sthw7")
+
+[node name="restart_button" type="TextureButton" parent="HBoxContainer" unique_id=1242650277]
+layout_mode = 2
+texture_normal = ExtResource("4_s724p")
+texture_pressed = ExtResource("5_1wxb6")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HBoxContainer" unique_id=374340246]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+texture = ExtResource("1_dd5ng")
+region_rect = Rect2(0, 0, 32, 32)
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="timer_label" type="RichTextLabel" parent="HBoxContainer/NinePatchRect" unique_id=598585414]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0625
+anchor_top = 0.125
+anchor_right = 0.9375
+anchor_bottom = 0.875
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_1wxb6")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 24
+theme_override_font_sizes/bold_italics_font_size = 24
+theme_override_font_sizes/italics_font_size = 24
+theme_override_font_sizes/mono_font_size = 244
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=390253081]
+one_shot = true
+ignore_time_scale = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1113932983]
+
+[connection signal="pressed" from="HBoxContainer/playpause_button" to="." method="_on_playpause_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/restart_button" to="." method="_on_restart_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
