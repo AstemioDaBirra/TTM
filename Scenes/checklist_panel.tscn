@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm0465q8i3keg"]
+
+[ext_resource type="Script" uid="uid://lw8ugld401xx" path="res://Scripts/checklist_panel.gd" id="1_44r2r"]
+[ext_resource type="Texture2D" uid="uid://ct7xjb1kxd6yo" path="res://art/background.png" id="1_kq7nl"]
+[ext_resource type="PackedScene" uid="uid://dvwh4xv2jlwcr" path="res://Scenes/task_panel.tscn" id="2_44r2r"]
+
+[node name="checklist_panel" type="Panel" unique_id=1990938670]
+custom_minimum_size = Vector2(256, 384)
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+script = ExtResource("1_44r2r")
+task_panel = ExtResource("2_44r2r")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=448332220]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kq7nl")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=879768586]
+custom_minimum_size = Vector2(224, 268)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 58.0
+offset_right = -16.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2053405940]
+custom_minimum_size = Vector2(224, 268)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer" unique_id=220336380]
+layout_mode = 2
+placeholder_text = "Enter task name here..."
+
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
