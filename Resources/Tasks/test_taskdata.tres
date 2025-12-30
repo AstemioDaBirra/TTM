@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TaskData" load_steps=2 format=3 uid="uid://deaglvcn4fg70"]
+
+[ext_resource type="Script" uid="uid://dwady8fbgw47t" path="res://Scripts/task_data.gd" id="1_4dhn6"]
+
+[resource]
+script = ExtResource("1_4dhn6")
+task_name = "Testing Task"
+is_complete = true
+metadata/_custom_type_script = "uid://dwady8fbgw47t"

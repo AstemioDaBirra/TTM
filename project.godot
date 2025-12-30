@@ -17,12 +17,16 @@ config/icon="res://art/icon.svg"
 
 [autoload]
 
-AppManager="*res://Scenes/main_scene.tscn"
+MainScene="*res://Scenes/main_scene.tscn"
 
 [display]
 
 window/size/viewport_width=256
 window/size/viewport_height=768
+
+[global_group]
+
+MainScene=""
 
 [physics]
 
